@@ -34,3 +34,13 @@ To build and run with Docker:
 docker build -t secure-tinydb-app .
 docker run -p 8000:8000 secure-tinydb-app
 ```
+
+## Docker Compose
+
+To start the application with Docker Compose:
+
+```bash
+docker compose up --build
+```
+
+The compose file loads variables from `.env` and persists the database and uploaded images in the current directory.
