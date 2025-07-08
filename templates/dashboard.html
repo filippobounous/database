@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Dashboard</h1>
+    <a href="/logout">Logout</a>
+    <h2>Upload Image</h2>
+    <form method="post" action="/upload" enctype="multipart/form-data">
+        <input type="text" name="name" placeholder="Name" required>
+        <input type="text" name="notes" placeholder="Notes">
+        <input type="file" name="file" accept="image/*" required>
+        <button type="submit">Upload</button>
+    </form>
+
+    <h2>Upload CSV</h2>
+    <form method="post" action="/upload_csv" enctype="multipart/form-data">
+        <input type="file" name="csv_file" accept=".csv" required>
+        <button type="submit">Upload CSV</button>
+    </form>
+
+    <h2>Records</h2>
+    <ul>
+    {% for item in records %}
+        <li>
+            <strong>{{ item.get('name') }}</strong>
+            {% if item.get('image') %}
+            <br>
+            <img src="/images/{{ item.get('image') }}" width="100">
+            {% endif %}
+            {% if item.get('notes') %}<p>{{ item.get('notes') }}</p>{% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
